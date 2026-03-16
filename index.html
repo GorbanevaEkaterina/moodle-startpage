@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ru" xml:lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Учебная платформа | ПГУТИ</title>
+  <meta property="og:title" content="Учебная платформа | ПГУТИ" />
+  <meta name="theme-color" content="#2A52BE">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://psuti.ru/favicon.ico">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <style>
+    /* === ПГУТИ Theme Variables === */
+    :root {
+      --color-primary-blue: #2A52BE;
+      /* Основной синий ПГУТИ */
+      --color-primary-dark: #1E3F8F;
+      /* Темно-синий */
+      --color-accent-orange: #FF6600;
+      /* Оранжевый акцент */
+
+      --color-text-main: #212121;
+      --color-text-light: #666666;
+      --color-bg-body: #F5F7FA;
+      --color-bg-white: #FFFFFF;
+
+      --card-purple: linear-gradient(135deg, #C4D6F2 0%, #E0E0E0 100%);
+      --card-green: linear-gradient(135deg, #9CCAC6 0%, #A8DADC 100%);
+      --card-blue: linear-gradient(135deg, #9ABDC9 0%, #BDE3F8 100%);
+      --card-lightblue: linear-gradient(135deg, #A8B3D5 0%, #C7CEEA 100%);
+      --card-gray: linear-gradient(135deg, #c6c6c6 0%, #dcdcdc 100%);
+      --card-orange: linear-gradient(135deg, #ffbfa4 0%, #ffe0c2 100%);
+
+      --container-width: 1200px;
+      --radius-sm: 6px;
+      --radius-lg: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--color-bg-body);
+      color: var(--color-text-main);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* === Header === */
+    .header {
+      background: #fff;
+      height: 70px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+
+    .logo span:first-child {
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: var(--color-text-light);
+    }
+
+    .logo span:last-child {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--color-primary-blue);
+    }
+
+    .btn-login {
+      background: var(--color-primary-blue) !important;
+      color: white !important;
+      padding: 10px 20px !important;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+
+    .btn-login:hover {
+      background: var(--color-primary-dark);
+    }
+
+    /* === Hero Slider === */
+    .hero-section {
+      background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-dark) 100%);
+      padding: 80px 0;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-content h1 {
+      font-size: 48px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero-content h1 span {
+      color: var(--color-accent-orange);
+      display: block;
+    }
+
+    .hero-content p.subtitle {
+      font-size: 18px;
+      margin-bottom: 24px;
+      opacity: 0.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-lg {
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      min-width: 220px;
+    }
+
+    /* === Buttons === */
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      text-align: center;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--color-accent-orange);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #E65C00;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: var(--color-primary-blue);
+    }
+
+    .btn-small {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    /* === Features Grid === */
+    .features-section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      text-align: center;
+      margin-bottom: 48px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .section-title::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      height: 40px;
+      width: 6px;
+      background: var(--color-accent-orange);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-title {
+      color: var(--color-primary-blue);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .feature-list {
+      list-style: disc;
+      padding-left: 20px;
+      color: var(--color-text-light);
+    }
+
+    .feature-list li {
+      margin-bottom: 8px;
+    }
+
+    .feature-btn {
+      margin-top: 24px;
+      display: inline-block;
+      color: var(--color-primary-blue);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .feature-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* === Cards Grid === */
+    .directions-section {
+      padding: 80px 0;
+      background: var(--color-bg-white);
+    }
+
+    .directions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .card-item {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+      min-height: 280px;
+    }
+
+    .card-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-gradient-purple {
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23C4D6F2"/><stop offset="100%" stop-color="%23E0E0E0"/></linearGradient></defs><rect fill="url(%23g)" width="100%" height="100%"/></svg>');
+    }
+
+    .card-gradient-green {
+      background: #9CCAC6;
+    }
+
+    .card-gradient-blue {
+      background: #9ABDC9;
+    }
+
+    .card-gradient-lightblue {
+      background: #A8B3D5;
+    }
+
+    .card-gradient-gray {
+      background: #c6c6c6;
+    }
+
+    .card-gradient-orange {
+      background: #ffbfa4;
+    }
+
+    .card-body {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      color: white;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .card-desc {
+      color: white;
+      opacity: 0.9;
+      font-size: 14px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .card-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .card-gradient-purple .card-btn,
+    .card-gradient-green .card-btn,
+    .card-gradient-blue .card-btn,
+    .card-gradient-lightblue .card-btn,
+    .card-gradient-orange .card-btn {
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+    }
+
+    .card-gradient-gray .card-btn {
+      background: rgba(255, 255, 255, 0.5);
+      color: #333;
+    }
+
+    /* === Level Cards === */
+    .level-section {
+      padding: 80px 0;
+    }
+
+    .level-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .level-card {
+      background: white;
+      border: 2px solid var(--color-primary-blue);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .level-card:hover {
+      background: var(--color-primary-blue);
+      color: white;
+    }
+
+    .level-card__icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .level-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--color-primary-blue);
+    }
+
+    .level-card p {
+      font-size: 14px;
+      color: var(--color-text-light);
+      margin-bottom: 16px;
+    }
+
+    .level-card:hover h3,
+    .level-card:hover p {
+      color: white;
+    }
+
+    .level-link {
+      color: var(--color-primary-blue);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .level-card:hover .level-link {
+      color: white;
+    }
+
+    /* === FAQ Accordion === */
+    .faq-section {
+      padding: 80px 0;
+      background: var(--color-bg-body);
+    }
+
+    .accordion {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .accordion-item {
+      background: white;
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .accordion-button {
+      width: 100%;
+      padding: 20px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+    }
+
+    .accordion-button:hover {
+      background: var(--color-bg-body);
+    }
+
+    .accordion-button::after {
+      content: '+';
+      font-size: 24px;
+      color: var(--color-primary-blue);
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-button.active::after {
+      transform: rotate(45deg);
+    }
+
+    .accordion-collapse {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
+
+    .accordion-collapse.show {
+      max-height: 500px;
+    }
+
+    .accordion-body {
+      padding: 0 24px 20px;
+      color: var(--color-text-light);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .accordion-body a {
+      color: var(--color-primary-blue);
+      text-decoration: none;
+    }
+
+    .accordion-body a:hover {
+      text-decoration: underline;
+    }
+
+    /* === Footer === */
+    footer {
+      background: var(--color-primary-dark);
+      color: white;
+      padding: 60px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .footer-logo {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-accent-orange);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: var(--color-primary-blue);
+      color: white;
+      text-align: center;
+      line-height: 40px;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 12px;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      background: var(--color-accent-orange);
+      transform: translateY(-3px);
+    }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 30px 0;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .support-form label {
+      display: block;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .support-form input,
+    .support-form select,
+    .support-form textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      border: none;
+      margin-bottom: 16px;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .support-form input:focus,
+    .support-form select:focus,
+    .support-form textarea:focus {
+      outline: 2px solid var(--color-primary-blue);
+    }
+
+    /* === Responsive === */
+    @media (max-width: 992px) {
+      .hero-content h1 {
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .rui-hero-desc h3 {
+        font-size: 24px;
+      }
+
+      .directions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .btn-lg {
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body id="page-site-index">
+
+  <!-- Header / Navigation -->
+  <nav class="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <span>ПСИ И ИНФО</span>
+        <span>ПГУТИ</span>
+      </a>
+      <div class="nav-links">
+        <a href="#education" style="color: inherit; text-decoration: none; margin-right: 20px;">Образование</a>
+        <a href="#courses" style="color: inherit; text-decoration: none; margin-right: 20px;">Курсы</a>
+        <a href="#about" style="color: inherit; text-decoration: none; margin-right: 20px;">О нас</a>
+        <a href="#contacts" style="color: inherit; text-decoration: none;">Контакты</a>
+      </div>
+      <div class="header-actions">
+        <a href="#" class="btn btn-login">Войти</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <p class="subtitle">Самарский государственный политехнический университет связи</p>
+          <h1>Учебная<br>платформа<span>цифрового образования</span></h1>
+          <p class="description">Дополнительное профессиональное образование и повышение квалификации</p>
+          <div class="hero-buttons">
+            <a href="#courses" class="btn btn-lg btn-primary">Каталог курсов</a>
+            <a href="#" class="btn btn-lg btn-outline">Зарегистрироваться</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section wrapper-xl">
+      <div class="container">
+        <h2 class="section-title">Возможности платформы</h2>
+
+        <div class="features-grid">
+          <!-- Для слушателей -->
+          <article class="feature-card">
+            <div style="font-size: 48px; margin-bottom: 20px;">👨🎓</div>
+            <h3 class="feature-title">Для слушателей</h3>
+            <p style="margin-bottom: 16px;">Эффективная поддержка обучения:</p>
+            <ul class="feature-list">
+              <li>Обучающие материалы в текстовом и видеоформате</li>
+              <li>Тесты и задания с автоматической проверкой</li>
+              <li>Отслеживание прогресса обучения</li>
+              <li>Взаимодействие с преподавателями</li>
+              <li>Доступ из любой точки мира</li>
+            </ul>
+            <a href="#" class="feature-btn">Перейти в личный кабинет →</a>
+          </article>
+
+          <!-- Преподаватели -->
+          <article class="feature-card">
+            <div style="font-size: 48px; margin-bottom: 20px;">👨🏫</div>
+            <h3 class="feature-title">Для преподавателей</h3>
+            <p style="margin-bottom: 16px;">Разработка современных электронных курсов:</p>
+            <ul class="feature-list">
+              <li>Размещение материалов любого формата</li>
+              <li>Интерактивный контент и геймификация</li>
+              <li>Инструменты проверки результатов обучения</li>
+              <li>Рейтинги и значки для студентов</li>
+              <li>Управление активностью слушателей</li>
+            </ul>
+            <a href="#" class="feature-btn">Создать курс →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs by Direction -->
+    <section class="directions-section" id="courses">
+      <div class="container">
+        <h2 class="section-title">Программы по направлениям</h2>
+
+        <div class="directions-grid">
+          <!-- IT & Data -->
+          <a href="https://abitur.psuti.ru/napravleniya-podgotovki/fakultet-kiberbezopasnosti-upravleniya/"
+            class="card-item card-gradient-purple">
+            <div class="card-body">
+              <div>
+                <div style="font-size: 40px; margin-bottom: 16px;">💻</div>
+                <h3 class="card-title">Анализ данных и IT</h3>
+                <p class="card-desc">Программирование, прикладная аналитика, Python, информационная безопасность,
+                  цифровая экономика</p>
+              </div>
+              <button class="card-btn">Смотреть курсы →</button>
+            </div>
+          </a>
+
+          <!-- Mathematics & Physics -->
+          <a href="#" class="card-item card-gradient-green">
+            <div class="card-body">
+              <div>
+                <div style="font-size: 40px; margin-bottom: 16px;">📐</div>
+                <h3 class="card-title">Математика и физика</h3>
+                <p class="card-desc">Прикладная математика, инженерное дело, астрономия, биотехнологии и фармацевтика
+                </p>
+              </div>
+              <button class="card-btn">Смотреть курсы →</button>
+            </div>
+          </a>
+
+          <!-- Languages -->
+          <a href="#" class="card-item card-gradient-blue">
+            <div class="card-body">
+              <div>
+                <div style="font-size: 40px; margin-bottom: 16px;">🌍</div>
+                <h3 class="card-title">Иностранные языки</h3>
+                <p class="card-desc">Английский, китайский, немецкий, испанский. Курсы для тех, кто преподает и
+                  переводит</p>
+              </div>
+              <button class="card-btn">Смотреть курсы →</button>
+            </div>
+          </a>
+
+          <!-- Teaching & Psychology -->
+          <a href="#" class="card-item card-gradient-lightblue">
+            <div class="card-body">
+              <div>
+                <div style="font-size: 40px; margin-bottom: 16px;">🧠</div>
+                <h3 class="card-title">Преподавание и психология</h3>
+                <p class="card-desc">Инновации в педагогике, психология обучения, развитие личности, программы для
+                  учителей</p>
+              </div>
+              <button class="card-btn">Смотреть курсы →</button>
+            </div>
+          </a>
+
+          <!-- Business & Management -->
+          <a href="#" class="card-item card-gradient-gray">
+            <div class="card-body">
+              <div>
+                <div style="font-size: 40px; margin-bottom: 16px;">📊</div>
+                <h3 class="card-title">Бизнес и управление</h3>
+                <p class="card-desc">Менеджмент, экономика, юриспруденция, обязательные курсы для руководителей</p>
+              </div>
+              <button class="card-btn">Смотреть курсы →</button>
+            </div>
+          </a>
+
+          <!-- Grad School Applicants -->
+          <a href="#" class="card-item card-gradient-orange">
+            <div class="card-body">
+              <div>
+                <div style="font-size: 40px; margin-bottom: 16px;">🎓</div>
+                <h3 class="card-title">Магистратура</h3>
+                <p class="card-desc">Бесплатно для абитуриентов, платно для всех желающих</p>
+              </div>
+              <button class="card-btn">Подробнее →</button>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs by Level -->
+    <section class="level-section">
+      <div class="container">
+        <h2 class="section-title">Программы по уровням</h2>
+
+        <div class="level-cards">
+          <article class="level-card">
+            <div class="level-card__icon">📚</div>
+            <h3>Дополнительное образование</h3>
+            <p>Мир знаний для развития. Сертификат.</p>
+            <a href="#" class="level-link">Смотреть курсы →</a>
+          </article>
+
+          <article class="level-card">
+            <div class="level-card__icon">📈</div>
+            <h3>Повышение квалификации</h3>
+            <p>Новые инструменты и экспертиза. Удостоверение.</p>
+            <a href="#" class="level-link">Смотреть курсы →</a>
+          </article>
+
+          <article class="level-card">
+            <div class="level-card__icon">🔄</div>
+            <h3>Профессиональная переподготовка</h3>
+            <p>Новая профессия «под ключ». Диплом.</p>
+            <a href="#" class="level-link">Смотреть курсы →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="contacts">
+      <div class="container">
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+
+        <div class="accordion" id="faqAccordion">
+          <!-- Вопрос 1 -->
+          <div class="accordion-item">
+            <button class="accordion-button">Как зарегистрироваться на платформе?</button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                Перейдите <a href="#">на форму регистрации</a> и заполните обязательные поля. На указанную электронную
+                почту придет письмо со ссылкой для активации учетной записи.
+              </div>
+            </div>
+          </div>
+
+          <!-- Вопрос 2 -->
+          <div class="accordion-item">
+            <button class="accordion-button">Как восстановить пароль?</button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                Перейдите <a href="#">на страницу восстановления пароля</a> и укажите ваш логин или email.
+              </div>
+            </div>
+          </div>
+
+          <!-- Вопрос 3 -->
+          <div class="accordion-item">
+            <button class="accordion-button">Чем отличаются программы?</button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                <ul>
+                  <li><strong>ПП (250+ часов)</strong> — диплом о профессиональной переподготовке</li>
+                  <li><strong>ПК (16+ часов)</strong> — удостоверение о повышении квалификации</li>
+                  <li><strong>ДО</strong> — сертификат о прохождении курса</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Вопрос 4 -->
+          <div class="accordion-item">
+            <button class="accordion-button">Какие документы нужны для поступления?</button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                <p>Граждане РФ:</p>
+                <ul>
+                  <li>Диплом о высшем/среднем проф. образовании</li>
+                  <li>Документ, удостоверяющий личность</li>
+                  <li>СНИЛС</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Вопрос 5 -->
+          <div class="accordion-item">
+            <button class="accordion-button">Как оплатить обучение?</button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                Оплата возможна как по договору на обучение (двусторонний/трехсторонний), так и по договору оферты.
+                Допускается рассрочка.
+              </div>
+            </div>
+          </div>
+
+          <!-- Вопрос 6 -->
+          <div class="accordion-item">
+            <button class="accordion-button">Как получить социальный налоговый вычет?</button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                Информация по получению социального налогового вычета доступна в инструкции.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">⚡ ПГУТИ</div>
+          <p>Самарский государственный политехнический университет связи</p>
+          <p style="margin-top: 12px;">📍 г. Самара, ул. Молодогвардейская, 141</p>
+          <p>📞 +7 (846) 339-92-00</p>
+          <p>✉️ info@psuti.ru</p>
+          <div class="social-links">
+            <a href="#" class="social-link">VK</a>
+            <a href="#" class="social-link">TG</a>
+            <a href="#" class="social-link">YT</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Поступающим</h4>
+          <ul class="footer-links">
+            <li><a href="#">Правила приема 2026</a></li>
+            <li><a href="#">Бакалавриат / Специалитет</a></li>
+            <li><a href="#">Магистратура</a></li>
+            <li><a href="#">Аспирантура</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Навигация</h4>
+          <ul class="footer-links">
+            <li><a href="#education">Образование</a></li>
+            <li><a href="#courses">Курсы</a></li>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Поддержка</h4>
+          <form class="support-form" action="#" method="post">
+            <label>Ваше имя *</label>
+            <input type="text" required placeholder="Введите Ваше имя">
+
+            <label>Email *</label>
+            <input type="email" required placeholder="Введите Ваш Email">
+
+            <label>Тема *</label>
+            <select required>
+              <option value="">Выберите тему</option>
+              <option>Не могу зайти</option>
+              <option>Что-то не работает</option>
+              <option>Сложности с курсом</option>
+              <option>Регистрация</option>
+            </select>
+
+            <label>Сообщение *</label>
+            <textarea required placeholder="Опишите ваш вопрос"></textarea>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить</button>
+          </form>
+        </div>
+      </div>
+
+      <hr class="footer-divider">
+
+      <div class="footer-bottom">
+        <p>© 2026 Самарский государственный политехнический университет связи. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="scripts/script.js"></script>
+</body>
+
+</html>
