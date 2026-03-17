@@ -4,13 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Учебная платформа | ПОВолжский государственный университет телекоммуникаций и информатики</title>
+  <title>Учебная платформа | Поволжский государственный университет телекоммуникаций и информатики</title>
   <meta property="og:title" content="Учебная платформа | ПГУТИ" />
   <meta name="theme-color" content="#2A52BE">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://psuti.ru/favicon.ico">
-  <link rel="apple-touch-icon" href="https://psuti.ru/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://psuti.ru/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://psuti.ru/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://psuti.ru/favicon-16x16.png">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -31,13 +33,8 @@
       --color-bg-body: #F5F7FA;
       --color-bg-white: #FFFFFF;
 
-      --card-purple: linear-gradient(135deg, #C4D6F2 0%, #E0E0E0 100%);
-      --card-green: linear-gradient(135deg, #9CCAC6 0%, #A8DADC 100%);
-      --card-blue: linear-gradient(135deg, #9ABDC9 0%, #BDE3F8 100%);
-      --card-lightblue: linear-gradient(135deg, #A8B3D5 0%, #C7CEEA 100%);
-      --card-gray: linear-gradient(135deg, #c6c6c6 0%, #dcdcdc 100%);
-      --card-orange: linear-gradient(135deg, #ffbfa4 0%, #ffe0c2 100%);
-
+      /* Строгие градиенты для карточек */
+      --card-gradient-straight: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
       --container-width: 1200px;
       --radius-sm: 6px;
       --radius-lg: 12px;
@@ -83,17 +80,30 @@
       height: 100%;
     }
 
-    .logo span:first-child {
-      font-size: 12px;
-      font-weight: 400;
-      text-transform: uppercase;
-      color: var(--color-text-light);
+    .logo img {
+      height: 40px;
+      /* Адаптируем размер логотипа */
+      width: auto;
     }
 
-    .logo span:last-child {
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .logo__top {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-text-light);
+      letter-spacing: 1px;
+    }
+
+    .logo__bottom {
       font-size: 20px;
       font-weight: 900;
       color: var(--color-primary-blue);
+      line-height: 1;
     }
 
     .btn-login {
@@ -116,6 +126,20 @@
       padding: 80px 0;
       text-align: center;
       color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Декоративный фон */
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
     }
 
     .hero-content h1 {
@@ -123,6 +147,8 @@
       font-weight: 900;
       margin-bottom: 16px;
       line-height: 1.2;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-content h1 span {
@@ -134,6 +160,8 @@
       font-size: 18px;
       margin-bottom: 24px;
       opacity: 0.9;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-buttons {
@@ -141,6 +169,8 @@
       gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
     }
 
     .btn-lg {
@@ -184,11 +214,6 @@
       color: var(--color-primary-blue);
     }
 
-    .btn-small {
-      padding: 10px 20px;
-      font-size: 14px;
-    }
-
     /* === Features Grid === */
     .features-section {
       padding: 80px 0;
@@ -222,14 +247,26 @@
 
     .feature-card {
       background: white;
-      padding: 32px;
+      padding: 40px;
       border-radius: var(--radius-lg);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       transition: transform 0.3s;
+      position: relative;
+      overflow: hidden;
     }
 
     .feature-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Стили для строгих SVG иконок */
+    .strict-svg {
+      fill: currentColor;
+      color: var(--color-primary-blue);
+      margin-bottom: 20px;
+      width: 64px;
+      height: 64px;
     }
 
     .feature-title {
@@ -243,6 +280,7 @@
       list-style: disc;
       padding-left: 20px;
       color: var(--color-text-light);
+      margin-bottom: 24px;
     }
 
     .feature-list li {
@@ -255,6 +293,9 @@
       color: var(--color-primary-blue);
       font-weight: 600;
       text-decoration: none;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 0.5px;
     }
 
     .feature-btn:hover {
@@ -281,6 +322,23 @@
       display: block;
       color: inherit;
       min-height: 280px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      background: white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--color-primary-blue);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
 
     .card-item:hover {
@@ -288,28 +346,24 @@
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
 
-    .card-gradient-purple {
-      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23C4D6F2"/><stop offset="100%" stop-color="%23E0E0E0"/></linearGradient></defs><rect fill="url(%23g)" width="100%" height="100%"/></svg>');
+    .card-item:hover::before {
+      opacity: 1;
     }
 
-    .card-gradient-green {
-      background: #9CCAC6;
+    .card-header {
+      height: 120px;
+      background: linear-gradient(to bottom right, var(--color-primary-blue), #eef2f8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
-    .card-gradient-blue {
-      background: #9ABDC9;
-    }
-
-    .card-gradient-lightblue {
-      background: #A8B3D5;
-    }
-
-    .card-gradient-gray {
-      background: #c6c6c6;
-    }
-
-    .card-gradient-orange {
-      background: #ffbfa4;
+    .card-svg-icon {
+      fill: rgba(255, 255, 255, 0.9);
+      width: 48px;
+      height: 48px;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     }
 
     .card-body {
@@ -318,21 +372,22 @@
       flex-direction: column;
       height: 100%;
       justify-content: space-between;
+      flex-grow: 1;
     }
 
     .card-title {
-      color: white;
+      color: var(--color-text-main);
       font-size: 20px;
       font-weight: 700;
       margin-bottom: 12px;
     }
 
     .card-desc {
-      color: white;
-      opacity: 0.9;
+      color: var(--color-text-light);
       font-size: 14px;
       margin-bottom: 20px;
       line-height: 1.5;
+      flex-grow: 1;
     }
 
     .card-btn {
@@ -341,20 +396,17 @@
       border-radius: var(--radius-sm);
       font-weight: 600;
       font-size: 14px;
+      color: var(--color-primary-blue);
+      border: 1px solid var(--color-primary-blue);
+      background: white;
+      transition: all 0.3s;
+      width: 100%;
+      text-align: center;
     }
 
-    .card-gradient-purple .card-btn,
-    .card-gradient-green .card-btn,
-    .card-gradient-blue .card-btn,
-    .card-gradient-lightblue .card-btn,
-    .card-gradient-orange .card-btn {
-      background: rgba(0, 0, 0, 0.3);
+    .card-item:hover .card-btn {
+      background: var(--color-primary-blue);
       color: white;
-    }
-
-    .card-gradient-gray .card-btn {
-      background: rgba(255, 255, 255, 0.5);
-      color: #333;
     }
 
     /* === Level Cards === */
@@ -382,9 +434,16 @@
       color: white;
     }
 
-    .level-card__icon {
-      font-size: 48px;
+    .level-svg {
+      fill: var(--color-primary-blue);
+      width: 48px;
+      height: 48px;
       margin-bottom: 20px;
+      transition: fill 0.3s;
+    }
+
+    .level-card:hover .level-svg {
+      fill: white;
     }
 
     .level-card h3 {
@@ -518,6 +577,9 @@
       font-weight: 900;
       margin-bottom: 16px;
       color: white;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .footer-links li {
@@ -543,7 +605,7 @@
     .social-link {
       width: 40px;
       height: 40px;
-      background: var(--color-primary-blue);
+      background: rgba(255, 255, 255, 0.1);
       color: white;
       text-align: center;
       line-height: 40px;
@@ -585,12 +647,15 @@
       border: none;
       margin-bottom: 16px;
       font-family: 'Roboto', sans-serif;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
     }
 
     .support-form input:focus,
     .support-form select:focus,
     .support-form textarea:focus {
       outline: 2px solid var(--color-primary-blue);
+      background: rgba(255, 255, 255, 0.2);
     }
 
     /* === Responsive === */
@@ -639,8 +704,12 @@
   <nav class="header">
     <div class="container header-inner">
       <a href="#" class="logo">
-        <span>ПСИ И ИНФО</span>
-        <span>ПГУТИ</span>
+        <!-- Логотип ПГУТИ (ссылка на официальный PNG/SVG) -->
+        <img src="https://www.psuti.ru/images/logo-new.svg" alt="ПГУТИ Logo" class="mr-2">
+        <div class="logo-text">
+          <span class="logo__top">ПСИ И ИНФО</span>
+          <span class="logo__bottom">ПГУТИ</span>
+        </div>
       </a>
       <div class="nav-links">
         <a href="https://psuti.ru/" style="color: inherit; text-decoration: none; margin-right: 20px;">Главная</a>
@@ -682,6 +751,11 @@
         <div class="features-grid">
           <!-- Для слушателей -->
           <article class="feature-card">
+            <!-- Строгий SVG пользователя -->
+            <svg class="strict-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+            </svg>
             <h3 class="feature-title">Для слушателей</h3>
             <p style="margin-bottom: 16px;">Эффективная поддержка обучения:</p>
             <ul class="feature-list">
@@ -696,6 +770,11 @@
 
           <!-- Преподаватели -->
           <article class="feature-card">
+            <!-- Строгий SVG учителя/презентации -->
+            <svg class="strict-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6H6v2h12V6zm0 4H6v2h12v-2zM6 14v2h12v-2H6z" />
+              <path d="M10 19h4v2h-4z" />
+            </svg>
             <h3 class="feature-title">Для преподавателей</h3>
             <p style="margin-bottom: 16px;">Разработка современных электронных курсов:</p>
             <ul class="feature-list">
@@ -718,11 +797,16 @@
 
         <div class="directions-grid">
           <!-- IT & Data -->
-          <a href="https://abitur.psgti.ru/faculty-it-informatika-i-kibervbezopasnosti/"
-            class="card-item card-gradient-purple">
+          <a href="https://abitur.psgti.ru/faculty-it-informatika-i-kibervbezopasnosti/" class="card-item">
+            <div class="card-header">
+              <!-- Строгий SVG Chip/Circuit -->
+              <svg class="card-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H9v-2h6v2zm-3-7c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm5-3H4V6h13v3z" />
+              </svg>
+            </div>
             <div class="card-body">
               <div>
-                <div style="font-size: 40px; margin-bottom: 16px;">💻</div>
                 <h3 class="card-title">Анализ данных и IT</h3>
                 <p class="card-desc">Программирование, прикладная аналитика, Python, информационная безопасность,
                   цифровая экономика</p>
@@ -732,10 +816,15 @@
           </a>
 
           <!-- Mathematics & Physics -->
-          <a href="https://abitur.psgti.ru/faculty-matematika-i-fizika/" class="card-item card-gradient-green">
+          <a href="https://abitur.psgti.ru/faculty-matematika-i-fizika/" class="card-item">
+            <div class="card-header" style="background: linear-gradient(to bottom right, #dce7f2, #bdcce6);">
+              <!-- Строгий SVG Geometry -->
+              <svg class="card-svg-icon" style="fill:#2A52BE" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.5 1L2 13h14L11.5 1zm-1.4 1.3L18.2 11H6.3l3.8-8.7zM2 21h14v-2H2v2zm0-4h14v-2H2v2z" />
+              </svg>
+            </div>
             <div class="card-body">
               <div>
-                <div style="font-size: 40px; margin-bottom: 16px;">📐</div>
                 <h3 class="card-title">Математика и физика</h3>
                 <p class="card-desc">Прикладная математика, инженерное дело, астрономия, биотехнологии и фармацевтика
                 </p>
@@ -745,10 +834,16 @@
           </a>
 
           <!-- Languages -->
-          <a href="https://abitur.psgti.ru/faculty-inostrannye-yazyki/" class="card-item card-gradient-blue">
+          <a href="https://abitur.psgti.ru/faculty-inostrannye-yazyki/" class="card-item">
+            <div class="card-header" style="background: linear-gradient(to bottom right, #bde3f8, #9accd4);">
+              <!-- Строгий SVG Globe/Chat -->
+              <svg class="card-svg-icon" style="fill:#2A52BE" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
+              </svg>
+            </div>
             <div class="card-body">
               <div>
-                <div style="font-size: 40px; margin-bottom: 16px;">🌍</div>
                 <h3 class="card-title">Иностранные языки</h3>
                 <p class="card-desc">Английский, китайский, немецкий, испанский. Курсы для тех, кто преподает и
                   переводит</p>
@@ -758,11 +853,16 @@
           </a>
 
           <!-- Teaching & Psychology -->
-          <a href="https://abitur.psgti.ru/faculty-pedagogika-i-psikhologiya/"
-            class="card-item card-gradient-lightblue">
+          <a href="https://abitur.psgti.ru/faculty-pedagogika-i-psikhologiya/" class="card-item">
+            <div class="card-header" style="background: linear-gradient(to bottom right, #c7ceea, #aebad1);">
+              <!-- Строгий SVG User/People -->
+              <svg class="card-svg-icon" style="fill:#2A52BE" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+              </svg>
+            </div>
             <div class="card-body">
               <div>
-                <div style="font-size: 40px; margin-bottom: 16px;">🧠</div>
                 <h3 class="card-title">Преподавание и психология</h3>
                 <p class="card-desc">Инновации в педагогике, психология обучения, развитие личности, программы для
                   учителей</p>
@@ -772,10 +872,15 @@
           </a>
 
           <!-- Business & Management -->
-          <a href="https://abitur.psgti.ru/faculty-upravlenie-i-biznes/" class="card-item card-gradient-gray">
+          <a href="https://abitur.psgti.ru/faculty-upravlenie-i-biznes/" class="card-item">
+            <div class="card-header" style="background: linear-gradient(to bottom right, #dcdcdc, #cfcfcf);">
+              <!-- Строгий SVG Building/Briefcase -->
+              <svg class="card-svg-icon" style="fill:#2A52BE" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+              </svg>
+            </div>
             <div class="card-body">
               <div>
-                <div style="font-size: 40px; margin-bottom: 16px;">📊</div>
                 <h3 class="card-title">Бизнес и управление</h3>
                 <p class="card-desc">Менеджмент, экономика, юриспруденция, обязательные курсы для руководителей</p>
               </div>
@@ -784,10 +889,15 @@
           </a>
 
           <!-- Grad School Applicants -->
-          <a href="https://abitur.psgti.ru/" class="card-item card-gradient-orange">
+          <a href="https://abitur.psgti.ru/" class="card-item">
+            <div class="card-header" style="background: linear-gradient(to bottom right, #ffe0c2, #ffcca4);">
+              <!-- Строгий SVG Academic Cap -->
+              <svg class="card-svg-icon" style="fill:#2A52BE" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z" />
+              </svg>
+            </div>
             <div class="card-body">
               <div>
-                <div style="font-size: 40px; margin-bottom: 16px;">🎓</div>
                 <h3 class="card-title">Магистратура</h3>
                 <p class="card-desc">Бесплатно для абитуриентов, платно для всех желающих</p>
               </div>
@@ -805,21 +915,30 @@
 
         <div class="level-cards">
           <article class="level-card">
-            <div class="level-card__icon">📚</div>
+            <svg class="level-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" />
+            </svg>
             <h3>Дополнительное образование</h3>
             <p>Мир знаний для развития. Сертификат.</p>
             <a href="https://edu.psuti.ru/additional-edu/" class="level-link">Смотреть курсы →</a>
           </article>
 
           <article class="level-card">
-            <div class="level-card__icon">📈</div>
+            <svg class="level-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+            </svg>
             <h3>Повышение квалификации</h3>
             <p>Новые инструменты и экспертиза. Удостоверение.</p>
             <a href="https://edu.psuti.ru/professional-development/" class="level-link">Смотреть курсы →</a>
           </article>
 
           <article class="level-card">
-            <div class="level-card__icon">🔄</div>
+            <svg class="level-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z" />
+            </svg>
             <h3>Профессиональная переподготовка</h3>
             <p>Новая профессия «под ключ». Диплом.</p>
             <a href="https://edu.psuti.ru/retraining/" class="level-link">Смотреть курсы →</a>
@@ -968,7 +1087,8 @@
             <label>Сообщение *</label>
             <textarea required placeholder="Опишите ваш вопрос"></textarea>
 
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить</button>
+            <button type="submit" class="btn btn-primary"
+              style="width: 100%; border:none; cursor:pointer;">Отправить</button>
           </form>
         </div>
       </div>
@@ -982,7 +1102,7 @@
   </footer>
 
   <!-- JavaScript -->
-  <script src="js/script.js"></script>
+  <script src="scripts/script.js"></script>
 </body>
 
 </html>
